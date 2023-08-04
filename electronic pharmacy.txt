@@ -1,0 +1,778 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+#include<string.h>
+char name1[10000][10000];//defining the name list
+char name[10000][10000];// ALL elements are lower case
+char id1[10000][10000];//defining the name list
+char id[10000][10000];//ALL elements are lower case
+int quantity[10000];//defining the quantity list
+char quantity1[10000][10000];//Array Used For conversion
+char com[10000][10000];//defining the companies list
+int price[10000];//defining the prices list
+char price1[10000][10000];//Array Used For Conversion
+char manufacturing[10000][10000];//defining the Manufacturing Date list
+char expiry[10000][10000];//defining the Expiry Date list
+char zero[5][5]={"\n","\n","\n"};
+void addmedicineid1(int i) //Adding medicine ID
+{
+    printf("\n\nEnter the ID of your medicine : ");
+    gets(id1[i]);//receives data from user
+    strcpy(id[i],strlwr(id1[i]));//adds data in form of lower case to second list
+    int j;
+    int x;
+    for(x=0;x<=i;x++)
+    {
+     for(j=0;j<=i;j++)
+      {
+        if(j==i)
+        {
+        continue;
+        }
+        else
+        {
+            while(strcmp(id[i],id[j])==0)//check if the ID isn't repeated
+            {
+                printf("\n\nThis ID Has Been Assigned Before\n\n");
+                printf("\n\nEnter the ID of your medicine : ");
+                gets(id1[i]);
+                strcpy(id[i],strlwr(id1[i]));
+                printf("\n\n");
+            }
+        }
+      }
+    }
+}
+void addmedicinename1(int i)//Adding medicine name
+{
+    printf("\n\nEnter the name of your medicine : ");
+    gets(name1[i]);//receives data from user
+    strcpy(name[i],strlwr(name1[i]));//adds data in form of lower case to second list
+    int j;
+    int x;
+    for(x=0;x<=i;x++)
+    {
+    for(j=0;j<=i;j++)
+    {
+        if(j==i)
+        {
+        continue;
+        }
+        else
+        {
+            while(strcmp(name[i],name[j])==0)//check if the Name is not repeated
+            {
+                printf("\n\nThis Name Has Been Assigned Before\n\n");
+                printf("\n\nEnter the name of your medicine : ");
+                gets(name1[i]);
+                printf("\n\n");
+                strcpy(name[i],strlwr(name1[i]));
+            }
+        }
+    }
+    }
+
+
+}
+void updatemedicine()//function to edit the data assigned
+{
+    printf("1-To Update a Medicine By Name\n\n2-To Update a Medicine By ID\n");
+    char y1[2];
+    int y;
+    gets(y1);//receives a number from user
+    y=atoi(y1);//y converted to integer
+    while(y<1|y>2)//check the validity of user choice
+    {
+        printf("Choose Between 1 & 2\n\n1-To Update a Medicine By Name\n\n2-To Update a Medicine By ID\n");
+        gets(y1);//receives a number from user
+        y=atoi(y1);//y converted to integer
+    }
+    if(y==2)
+    {
+    char x1[100];
+    printf("Enter Medicine ID : ");
+    gets(x1);//receives ID from user
+    int i=0;
+    for(;i<100;i++)
+    {
+        if(strcmp(strlwr(x1),id[i])==0)
+            break;
+    }
+    if(strcmp(strlwr(x1),id[i])==0)
+    {
+    while(1)
+    {
+    char xxx;
+    printf("\n\n1-Update Medicine ID\n\n2-Update Medicine Name\n\n3-Update Medicine Manufacturing Company\n\n4-Update Medicine Maunfacturing Date\n\n5-Update Medicine Expiry Date\n\n6-Update Medicine Price\n\n7-Update Medicine Quantitiy\n\n8-Quit\n\n");
+    printf("Enter Your choice : ");
+    printf("\n\n");
+    xxx=getch();
+    if(xxx=='1')
+    {
+        addmedicineid1(i);//receives the new ID from user
+    }
+    if(xxx=='2')
+    {
+        addmedicinename1(i);//receives the new NAME from user
+    }
+    if(xxx=='3')
+    {
+        printf("\n\nEnter The Name Of The Manufacturing Company : ");
+        gets(com[i]);//receives the new Manufacturing Company from user
+    }
+    if(xxx=='4')
+    {
+        printf("\n\nEnter The Manufacturing Date : ");
+        gets(manufacturing[i]);////receives the new Manufacturing Date from user
+    }
+    if(xxx=='5')
+    {
+        printf("\n\nEnter The Expiry Date : ");
+        gets(expiry[i]);//receives the new Expiry Date from user
+    }
+    if(xxx=='6')
+    {
+        printf("\n\nEnter The Medicine Price : ");
+        gets(price1[i]);//receives the new Medicine Price from user
+    }   price[i]=atoi(price1[i]);
+    if(xxx=='7')
+    {
+        printf("\n\nEnter The Medicine Quantity : ");
+        gets(quantity1[i]);//receives the new Medicine Quantity from user
+        quantity[i]=atoi(quantity1[i]);
+    }
+    if(xxx=='8')
+    {
+        return 0;
+    }
+    }
+    }
+    else//check validity of the ID
+    {
+        printf("\n\nNo Medicine With This ID In The Stock\n\n");
+    }
+    }
+    else if(y==1)
+    {
+    char ss[100];
+    printf("Enter Medicine Name : ");
+    gets(ss);//receives Medicine Name
+    int i=0;
+    for(;i<100;i++)
+    {
+        if(strcmp(strlwr(ss),name[i])==0)
+            break;
+    }
+    if(strcmp(strlwr(ss),name[i])==0)
+    {
+    while(1)
+    {
+
+    char xxx;
+    printf("\n\n1-Update Medicine ID\n\n2-Update Medicine Name\n\n3-Update Medicine Manufacturing Company\n\n4-Update Medicine Maunfacturing Date\n\n5-Update Medicine Expiry Date\n\n6-Update Medicine Price\n\n7-Update Medicine Quantitiy\n\n8-Quit\n\n");
+    printf("Enter Your choice : ");
+    printf("\n\n");
+    xxx=getch();
+    if(xxx=='1')
+    {
+        addmedicineid1(i);//receives the new ID from user
+    }
+    if(xxx=='2')
+    {
+        addmedicinename1(i);//receives the new NAME from user
+    }
+    if(xxx=='3')
+    {
+        printf("\n\nEnter The Name Of The Manufacturing Company : ");//receives the new Manufacturing Company from user
+        gets(com[i]);
+    }
+    if(xxx=='4')
+    {
+        printf("\n\nEnter The Manufacturing Date : ");//receives the new Manufacturing Date from user
+        gets(manufacturing[i]);
+    }
+    if(xxx=='5')
+    {
+        printf("\n\nEnter The Expiry Date : ");//receives the new Expiry Date from user
+        gets(expiry[i]);
+    }
+    if(xxx=='6')
+    {
+        printf("\n\nEnter The Medicine Price : ");//receives the new Medicine Price from user
+        gets(price1[i]);
+        price[i]=atoi(price1[i]);
+    }
+    if(xxx=='7')
+    {
+        printf("\n\nEnter The Medicine Quantity : ");//receives the new Medicine Quantity from user
+        gets(quantity1[i]);
+        quantity[i]=atoi(quantity1[i]);
+    }
+    if(xxx=='8')
+    {
+        return 0;
+    }
+    }
+    }
+    else
+    {
+        printf("\n\nNo Medicine With This Name In The Stock\n\n");//check validity of name entered by user
+    }
+}
+}
+void printallmedicine()//printing the saved data
+{
+    int i=0;
+    printf("IDs :");
+    for(i;i<10000;i++)
+    {
+        if(quantity[i]<=0)
+        {
+            continue;
+        }
+        else
+        {
+            printf("\t%s",id[i]);
+        }
+    }
+    printf("\n\n");
+    int j=0;
+    printf("Names :");
+    for(j;j<10000;j++)
+    {
+        if(quantity[j]<=0)
+        {
+            continue;
+        }
+        else
+        {
+            printf("\t%s",name[j]);
+        }
+    }
+    printf("\n\n");
+    int m=0;
+    printf("companies :");
+    for(m;m<10000;m++)
+    {
+        if(quantity[m]<=0)
+        {
+            continue;
+        }
+        else
+        {
+            printf("\t%s",com[m]);
+        }
+    }
+    printf("\n\n");
+    int xx=0;
+    printf("Manufacturing Dates :");
+    for(xx;xx<10000;xx++)
+    {
+        if(quantity[xx]<=0)
+        {
+            continue;
+        }
+        else
+        {
+            printf("\t%s",manufacturing[xx]);
+        }
+    }
+    printf("\n\n");
+    int yy=0;
+    printf("Expiry Dates :");
+    for(yy;yy<10000;yy++)
+    {
+        if(quantity[yy]<=0)
+        {
+            continue;
+        }
+        else
+        {
+            printf("\t%s",expiry[yy]);
+        }
+    }
+    printf("\n\n");
+    int qq=0;
+    printf("Quantities :");
+    for(qq;qq<10000;qq++)
+    {
+        if(quantity[qq]<=0)
+        {
+            continue;
+        }
+        else
+        {
+            printf("\t%d",quantity[qq]);
+        }
+    }
+    printf("\n\n");
+    int pp=0;
+    printf("Prices :");
+    for(pp;pp<10000;pp++)
+    {
+        if(quantity[pp]<=0)
+        {
+            continue;
+        }
+        else
+        {
+            printf("\t%d",price[pp]);
+        }
+    }
+    printf("\n\n");
+}
+void addmedicinename()//receives name of medicine
+{
+    static int i;
+    printf("\n\nEnter the name of your medicine : ");
+    gets(name1[i]);
+    strcpy(name[i],strlwr(name1[i]));
+    int j;
+    int x;
+    for(x=0;x<=i;x++)
+    {
+    for(j=0;j<=i;j++)
+    {
+        if(j==i)
+        {
+        continue;
+        }
+        else
+        {
+            while(strcmp(name[i],name[j])==0)
+            {
+                printf("\n\nThis Name Has Been Assigned Before\n\n");//check validity of name
+                printf("\n\nEnter the name of your medicine : ");//enter a valid name
+                gets(name1[i]);
+                printf("\n\n");
+                strcpy(name[i],strlwr(name1[i]));
+            }
+        }
+    }
+    }
+    i++;
+
+}
+void addmedicineid()//receives ID of medicine
+{
+    static int i;
+    printf("\n\nEnter the ID of your medicine : ");
+    gets(id1[i]);
+    strcpy(id[i],strlwr(id1[i]));
+    int j;
+    int x;
+    for(x=0;x<=i;x++)
+    {
+     for(j=0;j<=i;j++)
+      {
+        if(j==i)
+        {
+        continue;
+        }
+        else
+        {
+            while(strcmp(id[i],id[j])==0)
+            {
+                printf("\n\nThis ID Has Been Assigned Before\n\n");//check validity of ID
+                printf("\n\nEnter the ID of your medicine : ");//Enter a valid ID
+                gets(id1[i]);
+                printf("\n\n");
+                strcpy(id[i],strlwr(id1[i]));
+            }
+        }
+      }
+    }
+    i++;
+}
+void AddMedicine()//receives all data of medicine of medicine
+{
+    addmedicineid();
+    addmedicinename();
+    static int i=0;
+    printf("\n\nEnter The Name Of The Manufacturing Company : ");
+    gets(com[i]);//receives Manufacturing Company of medicine
+    printf("\n\nEnter The Manufacturing Date : ");
+    gets(manufacturing[i]);//receives Manufacturing Date of medicine
+    printf("\n\nEnter The Expiry Date : ");
+    gets(expiry[i]);//receives Expiry Date of medicine
+    printf("\n\nEnter your Medicine Quantity : ");
+    gets(quantity1[i]);//receives Medicine Quantity of medicine
+    quantity[i]=atoi(quantity1[i]);
+    printf("\n\nEnter your Medicine Price : ");
+    gets(price1[i]);//receives Price of medicine
+    printf("\n\n");
+    price[i]=atoi(price1[i]);
+    i++;
+}
+void deletemedicine()//delete the saved medicine info
+{
+    printf("1-To Delete a Medicine By Name\n\n2-To Delete a Medicine By ID\n");//receives the user choice to delete with ID or Name
+    char y1[2];
+    int y;
+    gets(y1);
+    y=atoi(y1);
+    while(y<1|y>2)//check validity of ID
+    {
+        printf("\nChoose Between 1 & 2\n\n1-To Delete a Medicine By Name\n\n2-To Delete a Medicine By ID\n");
+        gets(y1);
+        y=atoi(y1);
+    }
+    if(y==2)
+    {
+    char x1[100];
+    printf("Enter Medicine ID : ");
+    gets(x1);//receives ID from user
+    int i=0;
+    for(;i<100;i++)
+    {
+        if(strcmp(id[i],strlwr(x1))==0)
+            break;
+    }
+    if(strcmp(id[i],strlwr(x1))==0)
+    {
+    strcpy(name[i],zero[0]);
+    strcpy(id[i],zero[0]);
+    quantity[i]=0;
+    price[i]=0;
+    strcpy(manufacturing[i],zero[0]);
+    strcpy(expiry[i],zero[0]);
+    strcpy(com[i],zero[0]);
+    printf("\n\n");
+    }
+    else
+    {
+        printf("\n\nThere Is No Medicine With This ID In The Stock\n\n");//check validity of ID
+    }
+    }
+    if(y==1)
+    {
+    char ss[100];
+    printf("Enter Medicine Name : ");
+    gets(ss);//receives name of medicine
+    int i=0;
+    for(;i<100;i++)
+    {
+        if(strcmp(ss,strlwr(name[i]))==0)
+            break;
+    }
+    if(strcmp(ss,strlwr(name[i]))==0)
+    {
+    strcpy(name[i],zero[0]);
+    strcpy(id[i],zero[0]);
+    quantity[i]=0;
+    price[i]=0;
+    strcpy(manufacturing[i],zero[0]);
+    strcpy(expiry[i],zero[0]);
+    strcpy(com[i],zero[0]);
+    printf("\n\n");
+    }
+    else
+    {
+        printf("\n\nNo Medicine With This Name In The Stock\n\n");//check validity of Name
+    }
+    }
+}
+void medicineinfo()//viewing the saved data of medicines
+{
+    printf("1-To Get The Info By Name\n\n2-To Get The Info By ID\n");
+    char y1[5];
+    int y;
+    gets(y1);
+    y=atoi(y1);
+    while(y<1|y>2)//check validity of number
+    {
+        printf("Choose Between 1 & 2\n\n1-To Get The Info By Name\n\n2-To Get The Info By ID\n");
+        gets(y1);
+        y=atoi(y1);
+    }
+    if(y==2)
+    {
+    char x1[100];
+    int x;
+    printf("Enter Medicine ID : ");
+    gets(x1);
+    int i=0;
+    for(;i<100;i++)
+    {
+        if(strcmp(id[i],strlwr(x1))==0)
+            break;
+    }
+    if(strcmp(id[i],strlwr(x1))==0&&quantity[i]>0)//view received data
+    {
+    printf("\n\nThe medicine with the ID %s\n\n",x1);
+    printf("Medicine Name Is %s\n\n",name[i]);
+    printf("Medicine Manufacturing Company Is %s\n\n",com[i]);
+    printf("Medicine Manufacturing Date Is %s\n\n",manufacturing[i]);
+    printf("Medicine Expiry Date Is %s\n\n",expiry[i]);
+    printf("Medicine Quantity Left In Stock Is %d\n\n",quantity[i]);
+    printf("Medicine Price IS %d\n\n\n\n",price[i]);
+    }
+    else
+    {
+        printf("\n\nNo Medicine With This ID In The Stock\n\n");
+    }
+    }
+    if(y==1)
+    {
+    char ss[100];
+    printf("Enter Medicine Name : ");
+    gets(ss);//receives medicine name from the user
+    int i=0;
+    for(;i<100;i++)
+    {
+        if(strcmp(strlwr(ss),name[i])==0)
+            break;
+    }
+    if(strcmp(strlwr(ss),name[i])==0&&quantity[i]>0)
+    {
+    printf("\n\nThe medicine with the ID %s\n\n",id[i]);
+    printf("Medicine Name Is %s\n\n",name[i]);
+    printf("Medicine Manufacturing Company Is %s\n\n",com[i]);
+    printf("Medicine Manufacturing Date Is %s\n\n",manufacturing[i]);
+    printf("Medicine Expiry Date Is %s\n\n",expiry[i]);
+    printf("Medicine Quantity Left In Stock Is %d\n\n",quantity[i]);
+    printf("Medicine Price IS %d\n\n\n\n",price[i]);
+    }
+    else
+    {
+        printf("\n\nNo Medicine With This Name In The Stock\n\n");
+    }
+    }
+
+}
+void sellmedicine()
+{
+printf("\n\n1-Enter The Name Of the Medicine\n\n2-Enter The ID Of the Medicine\n");
+    char y1[5];
+    int y;
+    gets(y1);
+    y=atoi(y1);
+    while(y<1|y>2)
+    {
+        printf("Choose Between 1 & 2\n\n1-To Get The Info By Name\n\n2-To Get The Info By ID\n");
+        gets(y1);
+        y=atoi(y1);
+    }
+    if(y==2)
+    {
+    char x1[100];
+    int x;
+    printf("Enter Medicine ID : ");
+    gets(x1);
+    int i=0;
+    for(;i<100;i++)
+    {
+        if(strcmp(id[i],strlwr(x1))==0)
+            break;
+    }
+    if(strcmp(id[i],strlwr(x1))==0 && quantity[i]>0)
+    {
+        char xx[100];
+        int u;
+        printf("\n\nEnter The quantity you want : ");
+        gets(xx);
+        u=atoi(xx);
+        while(u>quantity[i])
+        {
+            printf("\nQuantity Avaliable In Stock Is %d\n\nEnter a Valid Quantity :",quantity[i]);
+            gets(xx);
+            u=atoi(xx);
+        }
+        printf("\nPrice Of The Requested Quantity is %d\n\n",u*price[i]);
+        quantity[i]-=u;
+        if(quantity[i]==0)
+        {
+            strcpy(name[i],zero[0]);
+            strcpy(id[i],zero[0]);
+            quantity[i]=0;
+            price[i]=0;
+            strcpy(manufacturing[i],zero[0]);
+            strcpy(expiry[i],zero[0]);
+            strcpy(com[i],zero[0]);
+            printf("\n\n");
+        }
+
+    }
+    else
+    {
+        printf("\n\nNo Medicine With This ID In The Stock\n\n");
+    }
+    }
+    if(y==1)
+    {
+    char ss[100];
+    printf("Enter Medicine Name : ");
+    gets(ss);
+    int i=0;
+    for(;i<100;i++)
+    {
+        if(strcmp(strlwr(ss),name[i])==0)
+            break;
+    }
+    if(strcmp(strlwr(ss),name[i])==0 && quantity[i]>0 )
+    {
+        char xx[100];
+        int u;
+        printf("\n\nEnter The quantity you want : ");
+        gets(xx);
+        u=atoi(xx);
+        while(u>quantity[i])
+        {
+            printf("\nQuantity Avaliable In Stock Is %d\n\nEnter a Valid Quantity :",quantity[i]);
+            gets(xx);
+            u=atoi(xx);
+        }
+        printf("\nPrice Of The Requested Quantity is %d\n\n",u*price[i]);
+        quantity[i]-=u;
+        if(quantity[i]==0)
+        {
+            strcpy(name[i],zero[0]);
+            strcpy(id[i],zero[0]);
+            quantity[i]=0;
+            price[i]=0;
+            strcpy(manufacturing[i],zero[0]);
+            strcpy(expiry[i],zero[0]);
+            strcpy(com[i],zero[0]);
+            printf("\n\n");
+        }
+    }
+    else
+    {
+        printf("\n\nNo Medicine With This Name In The Stock\n\n");
+    }
+    }
+
+}
+int main()
+{
+    FILE *fptr;
+    fptr = fopen("Data.dat","w");
+    printf("%75s","Welcome to the Electronic pharmacy.");
+    printf("\n");
+    printf("\n");
+    while(1)
+    {
+        printf("1-Add Medicine\n\n2-Delete Medicine\n\n3-Update Medicine\n\n4-Print Medicines in stock\n\n5-Get Medicine Info\n\n6-Sell Medicine\n\n7-Save & Quit\n\n");
+        char x;
+        printf("Enter your choice : ");
+        x=getche();
+        printf("\n\n\n\n");
+        if(x=='1')
+        {
+            AddMedicine();//Function Used To Add a New Medicine To The Stock
+        }
+        else if(x=='2')
+        {
+            deletemedicine();//Function Used To Delete Medicine From The Stock
+        }
+        else if(x=='3')
+        {
+            updatemedicine();//Updtae Medicine Information In The Stock
+        }
+        else if(x=='4')
+        {
+            printallmedicine();
+        }
+        else if(x=='5')
+        {
+            medicineinfo();
+        }
+        else if(x=='6')
+        {
+            sellmedicine();
+        }
+        else if(x=='7')
+        {
+            fputs("IDS :",fptr);// After The user Finishes his job this function saves his work in a file
+            int i=0;
+            for(;i<10000;i++)
+            {
+                if(quantity[i]>0)
+                {
+                    fputs("\t",fptr);
+                    fputs(id[i],fptr);
+                }
+            }
+             fputs("\n\n",fptr);
+             int j=0;
+             fputs("Names :",fptr);
+             for(;j<10000;j++)
+             {
+                if(quantity[j]>0)
+                {
+                    fputs("\t",fptr);
+                    fputs(name[j],fptr);
+                }
+              }
+              fputs("\n\n",fptr);
+             int k=0;
+             fputs("Companies :",fptr);
+             for(;k<10000;k++)
+             {
+                if(quantity[k]>0)
+                {
+                    fputs("\t",fptr);
+                    fputs(com[k],fptr);
+                }
+              }fputs("\n\n",fptr);
+             int x=0;
+             fputs("Manufacturing Dates :",fptr);
+             for(;x<10000;x++)
+             {
+                if(quantity[x]>0)
+                {
+                    fputs("\t",fptr);
+                    fputs(manufacturing[x],fptr);
+                }
+              }fputs("\n\n",fptr);
+             int y=0;
+             fputs("Expiry Dates :",fptr);
+             for(;y<10000;y++)
+             {
+                if(quantity[y]>0)
+                {
+                    fputs("\t",fptr);
+                    fputs(expiry[y],fptr);
+                }
+              }fputs("\n\n",fptr);
+             int e=0;
+             fputs("Quantities :",fptr);
+             for(;e<10000;e++)
+             {
+                if(quantity[e]>0)
+                {
+                    fputs("\t",fptr);
+                    fputs(quantity1[e],fptr);
+                }
+              }
+              fputs("\n\n",fptr);
+             int t=0;
+             fputs("Prices :",fptr);
+             for(;t<10000;t++)
+             {
+                if(quantity[t]>0)
+                {
+                    fputs("\t",fptr);
+                    fputs(price1[t],fptr);
+                }
+              }
+            return 0;
+        }
+        else
+        {
+            printf("Enter a Number Between 1 & 7\n\n");
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
